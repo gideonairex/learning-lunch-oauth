@@ -75,7 +75,7 @@ module.exports = [
 		'path' : '/me/repos',
 		'handler' : function ( request, reply ) {
 			return handlers.checkAuth( request.state[ 'github' ], function ( error, session ) {
-				if ( error ) {
+				if ( error || !session ) {
 					return reply( 'No session' ).code( 403 );
 				} else {
 					handlers.githubRequest( {
